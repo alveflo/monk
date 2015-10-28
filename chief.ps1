@@ -41,7 +41,15 @@ Function Watch($src, $dest, $includeSubDirectories) {
   $delegate = {
     $name = $Event.SourceEventArgs.Name
     $changeType = $Event.SourceEventArgs.ChangeType
-    Write-Host "[$(Get-Date -Format 'HH:mm:ss')] - $name : Changetype: $changeType"
+    Write-Host "[$(Get-Date -Format 'HH:mm:ss')]: " -Foreground DarkGray -NoNewLine
+    switch ($changeType)
+    {
+      'Created' { Write-Host "$changeType " -Foreground Green    -NoNewLine }
+      'Changed' { Write-Host "$changeType " -Foreground Cyan     -NoNewLine }
+      'Renamed' { Write-Host "$changeType " -Foreground Yellow   -NoNewLine }
+      'Deleted' { Write-Host "$changeType " -Foreground Red      -NoNewLine }
+    }
+    Write-Host $name -Foreground DarkCyan
   }
 
   $fileCreated  = Register-ObjectEvent $watcher Created -SourceIdentifier FileCreated -Action $delegate
@@ -50,16 +58,18 @@ Function Watch($src, $dest, $includeSubDirectories) {
   $fileDeleted  = Register-ObjectEvent $watcher Deleted -SourceIdentifier FileDeleted -Action $delegate
 
   try{
-    Write-Host "Running"
+    cls
+    Write-Host "`n`n`tAhoy!" -Foreground Green -NoNewLine
+    Write-Host "`n`n`t`tI'm watchin' your file system, chief!`n`t`tYou know the drill, press Ctrl+C to cancel.`n`n"
     while($true){}
   }
   finally {
-    Write-Host "Unregistering events..."
+    Write-Host "`n`n`tUnregistering events..."
     Unregister-Event FileCreated
     Unregister-Event FileChanged
     Unregister-Event FileDeleted
     Unregister-Event FileRenamed
-    Write-Host "Done."
+    Write-Host "`tDone. Later!`n`n"
   }
 }
 
