@@ -1,2 +1,6 @@
 # chief
-Minimalistic PowerShell task runner
+Minimalistic PowerShell fs watcher
+
+```
+$ Chief -watch .\src -out .\dest
+```
