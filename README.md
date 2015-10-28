@@ -1,6 +1,6 @@
-# chief
+# monk
 Minimalistic PowerShell fs watcher
 
 ```
-.\chief.ps1 -s .\src -d .\dest -IncludeSubDirectories
+.\monk.ps1 -s .\src -d .\dest -IncludeSubDirectories
 ```
