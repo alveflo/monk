@@ -2,5 +2,5 @@
 Minimalistic PowerShell fs watcher
 
 ```
-$ Chief -watch .\src -out .\dest
+.\chief.ps1 -s .\src -d .\dest -IncludeSubDirectories
 ```
