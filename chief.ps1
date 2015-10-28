@@ -1,24 +1,10 @@
 <#
   .SYNOPSIS
-    Copies role/profile permissions permissions from template.
-  .PARAMETER TemplateUrl
-  	Relative url to the template web
-  .PARAMETER RoleName
-  	Name of the role
-  .PARAMETER RoleType
-  	Type of the role, provided as 'role' or 'profile'.
-  .PARAMETER AllWebs
-  	Flag to copy permissions to all webs on product
-  .PARAMETER WebsList
-  	Comma separated file containing webs to copy to
-	.EXAMPLE
-	CopyPermission
-		-TemplateUrl url
-			-Roles .\roles.txt = { RoleName;IsProfile }
-		||  -AllRoles
-			-AllWebs
-		||  - WebLists .\webList.txt = { Urls }
-		-CreateProfilesIfNotExists
+    Watches file system and copies from src -> dest on file change
+  .PARAMETER SourcePath
+  	Path to source
+  .PARAMETER DestPath
+  	Path to destination
 #>
 
 param (
